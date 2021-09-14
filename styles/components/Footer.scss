@@ -1,0 +1,17 @@
+.Footer {
+  display: flex;
+  justify-content: center;
+
+  > ul {
+    font-size: 14px;
+
+    > li {
+      display: inline;
+      padding-right: 40px;
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+}
