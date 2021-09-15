@@ -3,9 +3,14 @@
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
+  padding: 25px;
 
   &__logo {
-    font-size: 24px;
+
+     svg {
+        fill: var(--color-a);
+        height: 35px;
+      }
   }
 
   &__links {
