@@ -1,7 +1,9 @@
 :root {
 
   // COLORS
-  --color-a: #1a4db5;
+  --color-a: #205bd1;
+
+  --color-b: #d0fde6;
 
   --color-heading-a: #000;
   --color-heading-b: #fff;
@@ -22,6 +24,7 @@
 
   // FONTS
   --font-a: 'Libre Baskerville', serif;
+  --font-b: 'Montserrat', sans-serif;
 
   --font-heading-a: 'Libre Baskerville', serif;
 
@@ -86,6 +89,12 @@ html {
     &:hover {
       color: var(--color-link-a-hover);
     }
+  }
+
+  input, button {
+    border: none;
+    outline: none;
+    font-family: var(--font-b);
   }
 
 }
