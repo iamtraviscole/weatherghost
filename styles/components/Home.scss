@@ -1,0 +1,173 @@
+.Home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #f8c5fd;
+  // heropatterns
+  background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f6b5fd' fill-opacity='1'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+  &__search-outer-ctr {
+    position: relative;
+    z-index: 0;
+  }
+
+  &__search {
+    padding: 30px;
+    background-color: var(--color-a);
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 10px 0 var(--color-a-shade);
+
+    &-ghost {
+      position: absolute;
+      right: 50px;
+      top: 0;
+      visibility: hidden;
+      z-index: -1;
+      transition: all .2s ease;
+  
+      > svg {
+        height: 120px;
+        transform: scaleX(-1);
+      }
+    }
+    
+    &:hover .Home__search-ghost {
+      top: -50px;
+      visibility: visible;
+    }
+
+    &-form {
+      > h1 {
+        text-align: center;
+        font-size: 18px;
+        color: var(--color-text-b);
+        margin-bottom: 15px;
+        font-weight: 400;
+      }
+
+      &-inner-ctr {
+        position: relative;
+      }
+
+      &-location {
+        width: 400px;
+        height: 40px;
+        padding: 0 34px 0 42px;
+        font-size: 16px;
+        background-color: var(--color-bg-a);
+        border-radius: 25px;
+        
+        &:focus + .Home__search-form-location-examples {
+          display: none;
+        }
+      }
+
+      &-location-icon {
+        position: absolute;
+        top: 5px;
+        left: 10px;
+
+        > svg {
+          display: block;
+          height: 30px;
+          fill: var(--color-a);
+        }
+      }
+
+      &-clear-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        margin: 0;
+        padding: 0;
+
+        > svg {
+          display: block;
+          height: 20px;
+          fill: var(--color-a-tint);
+        }
+      }
+
+      &-location-examples {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        height: 40px;
+        padding-left: 42px;
+        pointer-events: none;
+
+        &::after {
+          font-size: 16px;
+          font-family: var(--font-b);
+          font-weight: 300;
+          color: var(--color-placeholder-a);
+          animation: location-examples 15s infinite;
+          content: '';
+        }
+
+        &--hide {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &__recent {
+    width: 350px;
+    margin: 15px auto 0 auto;
+    
+    &-locations {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      &-location {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: 12px;
+        color: var(--color-text-b);
+        border: 1px solid var(--color-border-b);
+        border-radius: 15px;
+        margin: 5px 2px 0 2px;
+        padding: 0 10px;
+        height: 30px;
+        line-height: 30px;
+
+        &:hover {
+          background-color: var(--color-bg-a);
+          color: var(--color-a);
+        }
+      }
+    }
+
+    &-clear {
+      display: block;
+      margin: 15px auto -15px auto;
+      font-size: 12px;
+      color: var(--color-a-tint);
+
+      > svg {
+        height: 12px;
+        fill: var(--color-a-tint);
+        vertical-align: text-bottom;
+        padding-bottom: 1px;
+      }
+    }
+  }
+}
+
+@keyframes location-examples {
+  0% {content: 'New York, NY';}
+  14.3% {content: 'Eiffel Tower';}
+  28.6% {content: '90210';}
+  42.9% {content: 'Seattle, Washington';}
+  57.1% {content: 'Statue of Liberty';}
+  71.4% {content: 'Toronto, Ontario';}
+  85.7% {content: 'Oslo, Norway';}
+  100% {content: 'New York, NY';}
+}
