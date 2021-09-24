@@ -2,17 +2,13 @@
 
   // COLORS
   --color-a: #205bd1;
-
-  --color-b: #d0fde6;
-
-  --color-heading-a: #000;
-  --color-heading-b: #fff;
+  --color-a-tint: #8babeb;
+  --color-a-shade: #1848a8;
 
   --color-text-a: #000;
   --color-text-b: #fff;
 
-  --color-nav-a: #000;
-  --color-nav-a-hover: #fff;
+  --color-placeholder-a: #aaa;
 
   --color-link-a: #0000ff;
   --color-link-a-hover: #000;
@@ -21,6 +17,7 @@
   --color-bg-b: #000;
 
   --color-border-a: #000;
+  --color-border-b: #fff;
 
   // FONTS
   --font-a: 'Libre Baskerville', serif;
@@ -50,7 +47,7 @@ html {
   h5,
   h6 {
     font-family: var(--font-heading-a);
-    color: var(--color-heading-a);
+    color: var(--color-text-a);
     font-weight: 700;
   }
   
@@ -95,6 +92,13 @@ html {
     border: none;
     outline: none;
     font-family: var(--font-b);
+    background: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  button {
+    cursor: pointer;
   }
 
 }
