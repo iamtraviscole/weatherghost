@@ -97,6 +97,11 @@ html {
     padding: 0;
   }
 
+  input::placeholder {
+    color: var(--color-placeholder-a);
+    font-weight: 300;
+  }
+
   button {
     cursor: pointer;
   }
