@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import NavSearch from './NavSearch'
 
@@ -7,6 +8,7 @@ import Logo from '../public/weatherghostlogo.svg'
 
 export default function Nav() {
   const [unit, setUnit] = useState('')
+  const { pathname } = useRouter()
 
   const localUnitToState = () => {
     const localUnit = localStorage.getItem('unit') || 'imperial'
@@ -33,7 +35,7 @@ export default function Nav() {
       </div>
       <div className='Nav__right'>
         <div className='Nav__search'>
-          <NavSearch />
+          {pathname !== '/' && <NavSearch />}
         </div>
         <div className='Nav__units'>
           <button 
