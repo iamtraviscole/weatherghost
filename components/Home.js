@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 import WeatherGhost from '../public/weatherghost.svg'
 import LocationIcon from '../public/icons/location.svg'
 import CloseIcon from '../public/icons/close.svg'
 
-export default function Home(props) {
+export default function Home() {
+  const [location, setLocation] = useState('')
   const [recentLocations, setRecentLocations] = useState([])
 
   const localRecentLocationsToState = () => {
@@ -12,35 +13,28 @@ export default function Home(props) {
     localRecentLocations && setRecentLocations(localRecentLocations)
   }
 
-  useEffect(() => {
-    localRecentLocationsToState()
-  }, [])
+  useEffect(() => localRecentLocationsToState(), [])
 
-  const onChangeLocation = (e) => {
-    props.setLocation(e.target.value)
-  }
+  const onChangeLocation = (e) => setLocation(e.target.value)
   
   const onSubmitSearch = (e) => {
     e.preventDefault()
 
     const newRecentLocations = recentLocations.length < 3 
-      ? [...recentLocations, props.location]
-      : [...recentLocations.slice(1), props.location]
-
+      ? [...recentLocations, location]
+      : [...recentLocations.slice(1), location]
     localStorage.setItem('recentLocations', JSON.stringify(newRecentLocations))
     localRecentLocationsToState()
   }
 
-  const onClearSearch = (e) => {
-    props.setLocation('')
-  }
+  const onClearSearch = () => setLocation('')
 
-  const onClearRecentLocations = (e) => {
+  const onClearRecentLocations = () => {
     localStorage.removeItem('recentLocations')
     setRecentLocations([])
   }
 
-  const locationExamplesClass = props.location.length > 0 
+  const locationExamplesClass = location.length > 0 
     ? 'Home__search-form-location-examples--hide'
     : 'Home__search-form-location-examples'
 
@@ -61,7 +55,7 @@ export default function Home(props) {
               <span className='Home__search-form-location-icon'>
                 <LocationIcon />
               </span>
-              {props.location &&
+              {location &&
               <button
                 type='button'
                 className='Home__search-form-clear-icon'
@@ -73,7 +67,7 @@ export default function Home(props) {
                 className='Home__search-form-location'
                 id='Home__search-form-location'
                 name='Home__search-form-location'
-                value={props.location}
+                value={location}
                 onChange={onChangeLocation}
               />
               <span className={locationExamplesClass}></span>
