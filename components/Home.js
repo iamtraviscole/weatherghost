@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 import WeatherGhost from '../public/weatherghost.svg'
 import LocationIcon from '../public/icons/location.svg'
@@ -7,6 +8,8 @@ import CloseIcon from '../public/icons/close.svg'
 export default function Home() {
   const [location, setLocation] = useState('')
   const [recentLocations, setRecentLocations] = useState([])
+
+  const router = useRouter()
 
   const localRecentLocationsToState = () => {
     const localRecentLocations = JSON.parse(localStorage.getItem('recentLocations'))
@@ -19,6 +22,7 @@ export default function Home() {
   
   const onSubmitSearch = (e) => {
     e.preventDefault()
+    router.push(`/weather/${location}`)
 
     const newRecentLocations = recentLocations.length < 3 
       ? [...recentLocations, location]
