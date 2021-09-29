@@ -20,8 +20,7 @@ export default function Weather({ error, location }) {
     const { city, state, country } = location.address
     let locationNames = []
     city && locationNames.push(city)
-    state && locationNames.push(state)
-    country && locationNames.push(country)
+    state ? locationNames.push(state) : country && locationNames.push(country)
 
     return locationNames.join(', ')
   }
