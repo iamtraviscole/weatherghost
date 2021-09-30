@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 import WeatherGhost from '../public/weatherghost.svg'
 import LocationIcon from '../public/icons/location.svg'
@@ -35,7 +36,11 @@ export default function Home() {
     : 'Home__search-form-location-examples'
 
   const recentLocationButtons = recentLocations.map((location, i) => {
-    return <button key={i} className='Home__recent-locations-location'>{location}</button>
+    return (
+      <Link key={i} href={`/weather/${location}`}>
+        <a className='Home__recent-locations-location'>{location}</a>
+      </Link>
+    )
   })
 
   return (
