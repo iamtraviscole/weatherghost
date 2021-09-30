@@ -18,10 +18,13 @@ export default function Weather({ error, location }) {
   }
 
   const buildLocationName = (location) => {
-    const { city, state, country } = location.address
+    const { city, town, village, municipality, state, country } = location.address
+
     let locationNames = []
-    city && locationNames.push(city)
-    state ? locationNames.push(state) : country && locationNames.push(country)
+    const name1 = city || town || village || municipality
+    const name2 = state || country
+    name1 && locationNames.push(name1)
+    name2 && locationNames.push(name2)
 
     return locationNames.join(', ')
   }
@@ -47,9 +50,9 @@ export default function Weather({ error, location }) {
 }
 
 export async function getServerSideProps({ query }) {
-  const geoCodeData = fetchGeocodeData(query.location)
-
+  const geocodeData = fetchGeocodeData(query.location)
+  
   return {
-    props: geoCodeData
+    props: geocodeData
   }
 }
