@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import NProgress from 'nprogress'
 
-import '../styles/globals/reset.scss'
-import '../styles/globals/theme.scss'
+import '../styles/global/reset.scss'
+import '../styles/global/theme.scss'
 
 import '../styles/other/nprogress.scss'
 
