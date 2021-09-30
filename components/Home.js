@@ -11,24 +11,16 @@ export default function Home() {
 
   const router = useRouter()
 
-  const localRecentLocationsToState = () => {
+  useEffect(() => {
     const localRecentLocations = JSON.parse(localStorage.getItem('recentLocations'))
     localRecentLocations && setRecentLocations(localRecentLocations)
-  }
-
-  useEffect(() => localRecentLocationsToState(), [])
+  }, [])
 
   const onChangeLocation = (e) => setLocation(e.target.value)
   
   const onSubmitSearch = (e) => {
     e.preventDefault()
     router.push(`/weather/${location}`)
-
-    const newRecentLocations = recentLocations.length < 3 
-      ? [...recentLocations, location]
-      : [...recentLocations.slice(1), location]
-    localStorage.setItem('recentLocations', JSON.stringify(newRecentLocations))
-    localRecentLocationsToState()
   }
 
   const onClearSearch = () => setLocation('')

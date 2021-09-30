@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Error from 'next/error'
 
 import { fetchGeocodeData } from '../../utils/geocode'
@@ -26,6 +27,17 @@ export default function Weather({ error, location }) {
   }
 
   const locationName = buildLocationName(location)
+
+  useEffect(() => {
+    const localRecentLocations = JSON.parse(localStorage.getItem('recentLocations')) || []
+
+    if (!localRecentLocations.includes(locationName)) {
+      const newRecentLocations = localRecentLocations.length < 3 
+        ? [...localRecentLocations, locationName]
+        : [...localRecentLocations.slice(1), locationName]
+      localStorage.setItem('recentLocations', JSON.stringify(newRecentLocations))
+    }
+  }, [])
 
   return (
     <Layout>
