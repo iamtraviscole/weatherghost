@@ -1,11 +1,9 @@
 import { useEffect } from 'react'
 import Error from 'next/error'
 
-import { fetchGeocodeData } from '../../utils/geocode'
-
 import Layout from '../../components/Layout'
 
-export default function Weather({ error, location }) {
+export default function Weather({ error, location, weather }) {
   
   if (error) <Error statusCode={error} />
 
@@ -50,9 +48,21 @@ export default function Weather({ error, location }) {
 }
 
 export async function getServerSideProps({ query }) {
-  const geocodeData = fetchGeocodeData(query.location)
-  
-  return {
-    props: geocodeData
+  const locationRes = await fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&accept-language=en&q=${query.location}&limit=1`)
+  const locationErr = !locationRes.ok && locationRes.status
+  const locationArr = await locationRes.json()
+  const location = locationArr.length ? locationArr[0] : null
+
+  let props = {error: locationErr, location}
+
+  if (!locationErr && location) {
+    const weatherRes = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${location.lat}&lon=${location.lon}&appid=${[process.env.OPENWEATHER]}&units=imperial`)
+    const weatherErr = !weatherRes.ok && weatherRes.status
+    const weather = await weatherRes.json()
+
+    props.error = weatherErr
+    props.weather = weather
   }
+
+  return {props}
 }
