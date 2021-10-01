@@ -7,23 +7,24 @@ import NavSearch from './NavSearch'
 import Logo from '../public/weatherghostlogo.svg'
 
 export default function Nav() {
-  const [unit, setUnit] = useState('')
+  const [units, setUnits] = useState()
+
   const { pathname } = useRouter()
 
-  const localUnitToState = () => {
-    const localUnit = localStorage.getItem('unit') || 'imperial'
-    setUnit(localUnit)
+  const localUnitsToState = (stateSetter) => {
+    const localUnits = localStorage.getItem('units') || 'imperial'
+    stateSetter(localUnits)
   }
 
-  useEffect(() => localUnitToState(), [])
+  useEffect(() => localUnitsToState(setUnits), [])
 
   const onUnitClick = (e) => {
-    localStorage.setItem('unit', e.target.value)
-    localUnitToState()
+    localStorage.setItem('units', e.target.value)
+    localUnitsToState(setUnits)
   }
 
-  const unitClass = (buttonUnit) => {
-    return unit === buttonUnit
+  const unitClass = (buttonUnits) => {
+    return units === buttonUnits
       ? 'Nav__units-unit Nav__units-unit--active'
       : 'Nav__units-unit'
   }
