@@ -1,9 +1,12 @@
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import Error from 'next/error'
 
 import Layout from '../../components/Layout'
 
+import { UnitsContext } from '../../contexts/UnitsContext'
+
 export default function Weather({ error, location, weather }) {
+  const { units } = useContext(UnitsContext)
   
   if (error) <Error statusCode={error} />
 
