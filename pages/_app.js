@@ -13,6 +13,8 @@ import '../styles/components/NavSearch.scss'
 import '../styles/components/Footer.scss'
 import '../styles/components/Home.scss'
 
+import UnitsContext from '../contexts/UnitsContext'  
+
 NProgress.configure({showSpinner: false})
 
 function MyApp({ Component, pageProps }) {
@@ -33,7 +35,12 @@ function MyApp({ Component, pageProps }) {
     }
   }, [router])
 
-  return <Component {...pageProps} />
+  return (
+    <UnitsContext>
+      <Component {...pageProps} />
+    </UnitsContext>
+  )
+    
 }
 
 export default MyApp

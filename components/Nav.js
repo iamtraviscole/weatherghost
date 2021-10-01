@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -6,21 +6,15 @@ import NavSearch from './NavSearch'
 
 import Logo from '../public/weatherghostlogo.svg'
 
+import { UnitsContext } from '../contexts/UnitsContext'
+
 export default function Nav() {
-  const [units, setUnits] = useState()
+  const { units, setUnits } = useContext(UnitsContext)
 
   const { pathname } = useRouter()
 
-  const localUnitsToState = (stateSetter) => {
-    const localUnits = localStorage.getItem('units') || 'imperial'
-    stateSetter(localUnits)
-  }
-
-  useEffect(() => localUnitsToState(setUnits), [])
-
   const onUnitClick = (e) => {
-    localStorage.setItem('units', e.target.value)
-    localUnitsToState(setUnits)
+    setUnits(e.target.value)
   }
 
   const unitClass = (buttonUnits) => {
