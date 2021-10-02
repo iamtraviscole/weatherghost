@@ -40,6 +40,13 @@ export default function Weather({ error, location, weather }) {
         ? [...localRecentLocations, locationName]
         : [...localRecentLocations.slice(1), locationName]
       localStorage.setItem('recentLocations', JSON.stringify(newRecentLocations))
+    } else {
+      const locationIndex = localRecentLocations.indexOf(locationName)
+      if (locationIndex < 2) {
+        localRecentLocations.splice(locationIndex, 1)
+        const newRecentLocations = [...localRecentLocations, locationName]
+        localStorage.setItem('recentLocations', JSON.stringify(newRecentLocations))
+      }
     }
   }, [])
 
@@ -59,7 +66,7 @@ export async function getServerSideProps({ query }) {
   let props = {error: locationErr, location}
 
   if (!locationErr && location) {
-    const weatherRes = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${location.lat}&lon=${location.lon}&appid=${[process.env.OPENWEATHER]}&units=imperial`)
+    const weatherRes = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${location.lat}&lon=${location.lon}&appid=${process.env.OPENWEATHER}&units=imperial`)
     const weatherErr = !weatherRes.ok && weatherRes.status
     const weather = await weatherRes.json()
 
