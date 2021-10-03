@@ -12,6 +12,7 @@ import '../styles/components/Nav.scss'
 import '../styles/components/NavSearch.scss'
 import '../styles/components/Footer.scss'
 import '../styles/components/Home.scss'
+import '../styles/components/Weather.scss'
 
 import UnitsContext from '../contexts/UnitsContext'  
 

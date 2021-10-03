@@ -3,6 +3,9 @@ import Error from 'next/error'
 
 import Layout from '../../components/Layout'
 
+import { fToC } from '../../utils/conversions'
+import { localTime } from '../../utils/dates'
+
 import { UnitsContext } from '../../contexts/UnitsContext'
 
 export default function Weather({ error, location, weather }) {
@@ -32,6 +35,7 @@ export default function Weather({ error, location, weather }) {
 
   const locationName = buildLocationName(location)
 
+  // add location to recent locations
   useEffect(() => {
     const localRecentLocations = JSON.parse(localStorage.getItem('recentLocations')) || []
 
@@ -41,6 +45,7 @@ export default function Weather({ error, location, weather }) {
         : [...localRecentLocations.slice(1), locationName]
       localStorage.setItem('recentLocations', JSON.stringify(newRecentLocations))
     } else {
+      // if location already exists then move to end of arr
       const locationIndex = localRecentLocations.indexOf(locationName)
       if (locationIndex < 2) {
         localRecentLocations.splice(locationIndex, 1)
@@ -50,9 +55,38 @@ export default function Weather({ error, location, weather }) {
     }
   }, [])
 
+  const fOrC = (temp) => units === 'metric' ? Math.round(fToC(temp)) : Math.round(temp)
+
   return (
     <Layout>
-      {locationName}
+      <div className='Weather'>
+        <div className='Weather__current'>
+          <div className='Weather__current-ghost'>
+            weather illustration here
+          </div>
+          <div className='Weather__current-weather'>
+            <h1>{locationName}</h1>
+            <p className='Weather__current-weather-time'>
+              {localTime(weather.current.dt, weather.timezone_offset)}
+            </p>
+            <div className='Weather__current-weather-temp-ctr'>
+              <p className='Weather__current-weather-temp'>
+                {fOrC(weather.current.temp)}&#176;
+              </p>
+              <p className='Weather__current-weather-description'>
+                {weather.current.weather[0].main}
+              </p>
+              <p className='Weather__current-weather-feels'>
+                Feels like: <span>{fOrC(weather.current.feels_like)}&#176;</span>
+              </p>
+              <p className='Weather__current-weather-high-low'>
+                H: <span>{fOrC(weather.daily[0].temp.max)}&#176;</span> 
+                L: <span>{fOrC(weather.daily[0].temp.min)}&#176;</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </Layout>
   )
 }
