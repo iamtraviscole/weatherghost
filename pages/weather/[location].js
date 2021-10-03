@@ -5,10 +5,14 @@ import Layout from '../../components/Layout'
 
 import { fToC } from '../../utils/conversions'
 import { localTime } from '../../utils/dates'
+import { weatherDescription } from '../../utils/weather'
 
 import { UnitsContext } from '../../contexts/UnitsContext'
 
 export default function Weather({ error, location, weather }) {
+
+  console.log(weather)
+
   const { units } = useContext(UnitsContext)
   
   if (error) <Error statusCode={error} />
@@ -74,7 +78,7 @@ export default function Weather({ error, location, weather }) {
                 {fOrC(weather.current.temp)}&#176;
               </p>
               <p className='Weather__current-weather-description'>
-                {weather.current.weather[0].main}
+                {weatherDescription(weather.current.weather[0].id)}
               </p>
               <p className='Weather__current-weather-feels'>
                 Feels like: <span>{fOrC(weather.current.feels_like)}&#176;</span>
