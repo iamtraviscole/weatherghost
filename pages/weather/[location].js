@@ -3,8 +3,10 @@ import Error from 'next/error'
 
 import Layout from '../../components/Layout'
 
+import Rain from '../../public/icons/rain.svg'
+
 import { fToC } from '../../utils/conversions'
-import { localTime } from '../../utils/dates'
+import { locationTime, locationWeekdayTime } from '../../utils/dates'
 import { weatherDescription } from '../../utils/weather'
 
 import { UnitsContext } from '../../contexts/UnitsContext'
@@ -24,6 +26,8 @@ export default function Weather({ error, location, weather }) {
       </Layout>
     )
   }
+
+  const fOrC = (temp) => units === 'metric' ? Math.round(fToC(temp)) : Math.round(temp)
 
   const buildLocationName = (location) => {
     const { city, town, village, municipality, state, country } = location.address
@@ -59,7 +63,22 @@ export default function Weather({ error, location, weather }) {
     }
   }, [])
 
-  const fOrC = (temp) => units === 'metric' ? Math.round(fToC(temp)) : Math.round(temp)
+  const hours = weather.hourly.map((hour, i) => {
+    while (i < 25) {
+      return (
+        <div key={i} className='Weather__hourly-hour'>
+          <span className='Weather__hourly-hour-time'>
+            {locationWeekdayTime(weather.current.dt, hour.dt, weather.timezone_offset)}
+          </span>
+          <span className='Weather__hourly-hour-temp'>{fOrC(hour.temp)}&#176;</span>
+          <span className='Weather__hourly-hour-description'>{weatherDescription(hour.weather[0].id)}</span>
+          <span className='Weather__hourly-hour-rain'>
+          <Rain /> {Math.round(hour.pop * 100)}% 
+          </span>
+        </div>
+      )
+    }
+  })
 
   return (
     <Layout>
@@ -71,11 +90,12 @@ export default function Weather({ error, location, weather }) {
           <div className='Weather__current-weather'>
             <h1>{locationName}</h1>
             <p className='Weather__current-weather-time'>
-              {localTime(weather.current.dt, weather.timezone_offset)}
+              {locationTime(weather.current.dt, weather.timezone_offset)}
             </p>
             <div className='Weather__current-weather-temp-ctr'>
               <p className='Weather__current-weather-temp'>
-                {fOrC(weather.current.temp)}&#176;
+                {fOrC(weather.current.temp)}&#176; 
+                <span>{units === 'imperial' ? 'F' : 'C'}</span>
               </p>
               <p className='Weather__current-weather-description'>
                 {weatherDescription(weather.current.weather[0].id)}
@@ -84,11 +104,15 @@ export default function Weather({ error, location, weather }) {
                 Feels like: <span>{fOrC(weather.current.feels_like)}&#176;</span>
               </p>
               <p className='Weather__current-weather-high-low'>
-                H: <span>{fOrC(weather.daily[0].temp.max)}&#176;</span> 
+                H: <span>{fOrC(weather.daily[0].temp.max)}&#176; </span> 
                 L: <span>{fOrC(weather.daily[0].temp.min)}&#176;</span>
               </p>
             </div>
           </div>
+        </div>
+        <div className='Weather__hourly'>
+          <h2>Hourly</h2>
+          {hours}
         </div>
       </div>
     </Layout>

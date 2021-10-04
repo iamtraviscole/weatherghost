@@ -26,7 +26,7 @@
       &-temp-ctr {
         display: inline-block;
         margin-top: 20px;
-        padding: 20px;
+        padding: 20px 25px;
         border: 4px solid var(--color-border-b);
         border-radius: 10px;
       }
@@ -35,19 +35,12 @@
         font-size: 50px;
         line-height: 1;
         font-weight: 700;
-      }
-
-      &-feels {
 
         > span {
-          font-weight: bold;
-        }
-      }
-
-      &-high-low {
-
-        > span {
-          font-weight: bold;
+          position: relative;
+          top: -20px;
+          left: 5px;
+          font-size: 24px;
         }
       }
 
@@ -57,6 +50,83 @@
         padding-bottom: 10px;
         margin-bottom: 20px;
         border-bottom: 2px solid var(--color-border-b);
+      }
+
+      &-feels {
+
+        > span {
+          font-weight: 700;
+        }
+      }
+
+      &-high-low {
+
+        > span {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  &__hourly {
+    width: 100%;
+    padding-bottom: 100px;
+
+    > h2 {
+      font-size: 24px;
+      text-align: center;
+      margin: 50px 0;
+      color: var(--color-text-a);
+    }
+
+    > span {
+      line-height: 80px;
+    }
+
+    &-hour {
+      display: flex;
+      align-items: center;
+      position: relative;
+      width: 60%;
+      height: 80px;
+      border: 2px solid var(--color-border-a);
+      border-radius: 10px;
+      margin: 0 max(125px, 20%) 15px max(125px, 20%);
+
+      &-time {
+        position: absolute;
+        left: -125px;
+        text-align: right;
+        font-size: 12px;
+        width: 100px;
+        color: var(--color-text-a-tint);
+      }
+
+      &-temp {
+        position: absolute;
+        left: 25px;
+        font-size: 28px;
+        font-weight: 700;
+      }
+
+      &-description {
+        position: absolute;
+        left: 110px;
+        font-size: 20px;
+      }
+
+      &-rain {
+        position: absolute;
+        right: 25px;
+
+        > svg {
+          position: absolute;
+          right: 50px;
+          height: 20px;
+          stroke: var(--color-a-tint);
+          // margin-right: 5px;
+          vertical-align: bottom;
+        }
       }
     }
   }
