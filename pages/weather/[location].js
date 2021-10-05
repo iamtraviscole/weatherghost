@@ -5,7 +5,8 @@ import Layout from '../../components/Layout'
 
 import Rain from '../../public/icons/rain.svg'
 
-import { fOrC, weatherDescription, locationDate, dayIsToday } from '../../utils'
+import { fOrC, weatherDescription } from '../../utils/weather'
+import { locationDate, dayIsToday } from '../../utils/dates'
 
 import { UnitsContext } from '../../contexts/UnitsContext'
 
