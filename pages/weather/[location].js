@@ -5,9 +5,7 @@ import Layout from '../../components/Layout'
 
 import Rain from '../../public/icons/rain.svg'
 
-import { fOrC } from '../../utils/conversions'
-import { locationTime, locationWeekdayTime } from '../../utils/dates'
-import { weatherDescription } from '../../utils/weather'
+import { fOrC, locationTime, locationWeekdayTime, weatherDescription } from '../../utils'
 
 import { UnitsContext } from '../../contexts/UnitsContext'
 
