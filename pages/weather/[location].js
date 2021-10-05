@@ -7,6 +7,7 @@ import Rain from '../../public/icons/rain.svg'
 
 import { fOrC, weatherDescription } from '../../utils/weather'
 import { locationDate, dayIsToday } from '../../utils/dates'
+import { buildLocationName } from '../../utils/location'
 
 import { UnitsContext } from '../../contexts/UnitsContext'
 
@@ -24,18 +25,6 @@ export default function Weather({ error, location, weather }) {
         <p>Location not found</p>
       </Layout>
     )
-  }
-
-  const buildLocationName = (location) => {
-    const { city, town, village, municipality, state, country } = location.address
-
-    let locationNames = []
-    const name1 = city || town || village || municipality
-    const name2 = state || country
-    name1 && locationNames.push(name1)
-    name2 && locationNames.push(name2)
-
-    return locationNames.join(', ')
   }
 
   const locationName = buildLocationName(location)
