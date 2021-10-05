@@ -7,7 +7,7 @@ import Rain from '../../public/icons/rain.svg'
 
 import { fOrC, weatherDescription } from '../../utils/weather'
 import { locationDate, dayIsToday } from '../../utils/dates'
-import { buildLocationName } from '../../utils/location'
+import { buildLocationName, addLocationToLocalStorage } from '../../utils/location'
 
 import { UnitsContext } from '../../contexts/UnitsContext'
 
@@ -29,24 +29,8 @@ export default function Weather({ error, location, weather }) {
 
   const locationName = buildLocationName(location)
 
-  // add location to recent locations
   useEffect(() => {
-    const localRecentLocations = JSON.parse(localStorage.getItem('recentLocations')) || []
-
-    if (!localRecentLocations.includes(locationName)) {
-      const newRecentLocations = localRecentLocations.length < 3 
-        ? [...localRecentLocations, locationName]
-        : [...localRecentLocations.slice(1), locationName]
-      localStorage.setItem('recentLocations', JSON.stringify(newRecentLocations))
-    } else {
-      // if location already exists then move to end of arr
-      const locationIndex = localRecentLocations.indexOf(locationName)
-      if (locationIndex < 2) {
-        localRecentLocations.splice(locationIndex, 1)
-        const newRecentLocations = [...localRecentLocations, locationName]
-        localStorage.setItem('recentLocations', JSON.stringify(newRecentLocations))
-      }
-    }
+    addLocationToLocalStorage(location, locationName)
   }, [])
 
   const hours = weather.hourly.map((hour, i) => {
