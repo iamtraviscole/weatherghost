@@ -3,7 +3,7 @@ import Error from 'next/error'
 
 import Layout from '../../components/Layout'
 
-import Rain from '../../public/icons/rain.svg'
+import PrecipitationIcon from '../../public/icons/precipitation.svg'
 
 import { fOrC, weatherDescription } from '../../utils/weather'
 import { locationDate, dayIsToday } from '../../utils/dates'
@@ -52,7 +52,7 @@ export default function Weather({ error, location, weather }) {
           <span className='Weather__hourly-hour-temp'>{fOrC(hour.temp, units)}&#176;</span>
           <span className='Weather__hourly-hour-description'>{weatherDescription(hour.weather[0].id)}</span>
           <span className='Weather__hourly-hour-rain'>
-            <Rain /> {Math.round(hour.pop * 100)}% 
+            <PrecipitationIcon /> {Math.round(hour.pop * 100)}% 
           </span>
         </div>
       )
