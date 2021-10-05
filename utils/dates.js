@@ -3,23 +3,13 @@ import dayjsPluginUTC from 'dayjs-plugin-utc'
 
 dayjs.extend(dayjsPluginUTC)
 
-export const locationTime = (unix, timeZoneOffset) => {
-  return dayjs.unix(unix + timeZoneOffset).utc(true).format('h:mm A')
+export const locationDate = (unix, unixOffset, dayjsFormat) => {
+  return dayjs.unix(unix + unixOffset).utc(true).format(dayjsFormat)
 }
 
-export const locationWeekdayTime = (currentUnix, unix, timeZoneOffset) => {
-  const currentDate = dayjs.unix(currentUnix + timeZoneOffset)
-  const date = dayjs.unix(unix + timeZoneOffset)
+export const dayIsToday = (unix1, unix2, unixOffset) => {
+  const day1 = dayjs.unix(unix1 + unixOffset).utc(true).day()
+  const day2 = dayjs.unix(unix2 + unixOffset).utc(true).day()
 
-  if (currentDate.day() === date.day()) {
-    return {
-      weekday: '',
-      time: date.utc(true).format('h A')
-    }
-  } else {
-    return {
-      weekday: date.utc(true).format('ddd'),
-      time: date.utc(true).format('h A')
-    }
-  }
+  return day1 === day2
 }

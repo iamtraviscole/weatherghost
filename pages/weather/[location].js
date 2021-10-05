@@ -5,7 +5,7 @@ import Layout from '../../components/Layout'
 
 import Rain from '../../public/icons/rain.svg'
 
-import { fOrC, locationTime, locationWeekdayTime, weatherDescription } from '../../utils'
+import { fOrC, weatherDescription, locationDate, dayIsToday } from '../../utils'
 
 import { UnitsContext } from '../../contexts/UnitsContext'
 
@@ -61,13 +61,19 @@ export default function Weather({ error, location, weather }) {
 
   const hours = weather.hourly.map((hour, i) => {
     while (i < 25) {
-      const weekdayTime = locationWeekdayTime(weather.current.dt, hour.dt, weather.timezone_offset)
-
+      const time = (
+        dayIsToday(hour.dt, weather.current.dt, weather.timezone_offset)
+        ? <p>{locationDate(hour.dt, weather.timezone_offset, 'h A')}</p>
+        : <>
+            <p>{locationDate(hour.dt, weather.timezone_offset, 'ddd')}</p>
+            <p>{locationDate(hour.dt, weather.timezone_offset, 'h A')}</p>
+          </>
+      )
+      
       return (
         <div key={i} className='Weather__hourly-hour'>
           <span className='Weather__hourly-hour-time'>
-            {weekdayTime.weekday && <p>{weekdayTime.weekday}</p>}
-            <p>{weekdayTime.time}</p>
+            {time}
           </span>
           <span className='Weather__hourly-hour-temp'>{fOrC(hour.temp, units)}&#176;</span>
           <span className='Weather__hourly-hour-description'>{weatherDescription(hour.weather[0].id)}</span>
@@ -89,7 +95,7 @@ export default function Weather({ error, location, weather }) {
           <div className='Weather__current-weather'>
             <h1>{locationName}</h1>
             <p className='Weather__current-weather-time'>
-              {locationTime(weather.current.dt, weather.timezone_offset)}
+              {locationDate(weather.current.dt, weather.timezone_offset, 'dddd, h:mm A')}
             </p>
             <div className='Weather__current-weather-temp-ctr'>
               <p className='Weather__current-weather-temp'>
