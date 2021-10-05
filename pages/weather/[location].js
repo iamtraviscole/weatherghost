@@ -5,7 +5,7 @@ import Layout from '../../components/Layout'
 
 import Rain from '../../public/icons/rain.svg'
 
-import { fToC } from '../../utils/conversions'
+import { fOrC } from '../../utils/conversions'
 import { locationTime, locationWeekdayTime } from '../../utils/dates'
 import { weatherDescription } from '../../utils/weather'
 
@@ -26,8 +26,6 @@ export default function Weather({ error, location, weather }) {
       </Layout>
     )
   }
-
-  const fOrC = (temp) => units === 'metric' ? Math.round(fToC(temp)) : Math.round(temp)
 
   const buildLocationName = (location) => {
     const { city, town, village, municipality, state, country } = location.address
@@ -73,7 +71,7 @@ export default function Weather({ error, location, weather }) {
             {weekdayTime.weekday && <p>{weekdayTime.weekday}</p>}
             <p>{weekdayTime.time}</p>
           </span>
-          <span className='Weather__hourly-hour-temp'>{fOrC(hour.temp)}&#176;</span>
+          <span className='Weather__hourly-hour-temp'>{fOrC(hour.temp, units)}&#176;</span>
           <span className='Weather__hourly-hour-description'>{weatherDescription(hour.weather[0].id)}</span>
           <span className='Weather__hourly-hour-rain'>
             <Rain /> {Math.round(hour.pop * 100)}% 
@@ -97,18 +95,18 @@ export default function Weather({ error, location, weather }) {
             </p>
             <div className='Weather__current-weather-temp-ctr'>
               <p className='Weather__current-weather-temp'>
-                {fOrC(weather.current.temp)}&#176; 
+                {fOrC(weather.current.temp, units)}&#176; 
                 <span>{units === 'imperial' ? 'F' : 'C'}</span>
               </p>
               <p className='Weather__current-weather-description'>
                 {weatherDescription(weather.current.weather[0].id)}
               </p>
               <p className='Weather__current-weather-feels'>
-                Feels like: <span>{fOrC(weather.current.feels_like)}&#176;</span>
+                Feels like: <span>{fOrC(weather.current.feels_like, units)}&#176;</span>
               </p>
               <p className='Weather__current-weather-high-low'>
-                H: <span>{fOrC(weather.daily[0].temp.max)}&#176; </span> 
-                L: <span>{fOrC(weather.daily[0].temp.min)}&#176;</span>
+                H: <span>{fOrC(weather.daily[0].temp.max, units)}&#176; </span> 
+                L: <span>{fOrC(weather.daily[0].temp.min, units)}&#176;</span>
               </p>
             </div>
           </div>
