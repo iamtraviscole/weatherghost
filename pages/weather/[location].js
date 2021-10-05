@@ -65,15 +65,18 @@ export default function Weather({ error, location, weather }) {
 
   const hours = weather.hourly.map((hour, i) => {
     while (i < 25) {
+      const weekdayTime = locationWeekdayTime(weather.current.dt, hour.dt, weather.timezone_offset)
+
       return (
         <div key={i} className='Weather__hourly-hour'>
           <span className='Weather__hourly-hour-time'>
-            {locationWeekdayTime(weather.current.dt, hour.dt, weather.timezone_offset)}
+            {weekdayTime.weekday && <p>{weekdayTime.weekday}</p>}
+            <p>{weekdayTime.time}</p>
           </span>
           <span className='Weather__hourly-hour-temp'>{fOrC(hour.temp)}&#176;</span>
           <span className='Weather__hourly-hour-description'>{weatherDescription(hour.weather[0].id)}</span>
           <span className='Weather__hourly-hour-rain'>
-          <Rain /> {Math.round(hour.pop * 100)}% 
+            <Rain /> {Math.round(hour.pop * 100)}% 
           </span>
         </div>
       )

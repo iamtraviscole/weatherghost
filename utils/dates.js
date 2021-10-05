@@ -1,15 +1,25 @@
+import dayjs from 'dayjs'
+import dayjsPluginUTC from 'dayjs-plugin-utc'
+
+dayjs.extend(dayjsPluginUTC)
+
 export const locationTime = (unix, timeZoneOffset) => {
-  const date = new Date((unix + timeZoneOffset) * 1000)
-  return date.toLocaleString('en-US', {timeZone: 'UTC', hour: 'numeric', minute: 'numeric'})
+  return dayjs.unix(unix + timeZoneOffset).utc(true).format('h:mm A')
 }
 
 export const locationWeekdayTime = (currentUnix, unix, timeZoneOffset) => {
-  const currentDate = new Date((currentUnix + timeZoneOffset) * 1000)
-  const date = new Date((unix + timeZoneOffset) * 1000)
+  const currentDate = dayjs.unix(currentUnix + timeZoneOffset)
+  const date = dayjs.unix(unix + timeZoneOffset)
 
-  if (currentDate.getUTCDay() === date.getUTCDay()) {
-    return date.toLocaleString('en-US', {timeZone: 'UTC', hour: 'numeric', minute: 'numeric'})
+  if (currentDate.day() === date.day()) {
+    return {
+      weekday: '',
+      time: date.utc(true).format('h A')
+    }
   } else {
-    return date.toLocaleString('en-US', {timeZone: 'UTC', weekday: 'short', hour: 'numeric', minute: 'numeric'})
+    return {
+      weekday: date.utc(true).format('ddd'),
+      time: date.utc(true).format('h A')
+    }
   }
 }
