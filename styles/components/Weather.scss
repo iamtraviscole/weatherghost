@@ -95,7 +95,7 @@
 
       &-time {
         position: absolute;
-        left: -125px;
+        left: -115px;
         text-align: right;
         font-size: 12px;
         width: 100px;
@@ -107,11 +107,22 @@
         left: 25px;
         font-size: 28px;
         font-weight: 700;
+        text-align: right;
+      }
+
+      &-icon {
+        position: absolute;
+        left: 125px;
+
+        > svg {
+          width: 35px;
+          vertical-align: bottom;
+        }
       }
 
       &-description {
         position: absolute;
-        left: 110px;
+        left: 185px;
         font-size: 20px;
       }
 

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63 61.14">
+	<style type="text/css">
+		.st0{fill:#F5FF2E;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+		.st1{fill:#FFFFFF;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	</style>
+	<polygon class="st0" points="27.86,40.7 20.54,49.84 27.57,49.93 19.44,60.64 43.56,47.29 35.09,47.25 39.57,40.7 "/>
+	<path class="st1" d="M52.56,18.74c5.12,1.15,8.94,5.72,8.94,11.19c0,6.33-5.13,11.47-11.47,11.47H12.97
+		c-6.33,0-11.47-4.5-11.47-10.84c0-5.42,3.76-9.96,8.81-11.16c-0.31-0.92-0.48-1.91-0.48-2.94c0-5.1,4.13-9.23,9.23-9.23
+		c2.53,0,4.82,1.02,6.49,2.67v0c2.25-4.95,7.23-8.39,13.02-8.39c7.89,0,14.29,6.4,14.29,14.29C52.86,16.8,52.56,18.74,52.56,18.74
+		L52.56,18.74z"/>
+</svg>
