@@ -13,3 +13,11 @@ export const dayIsToday = (unix1, unix2, unixOffset) => {
 
   return day1 === day2
 }
+
+export const isDaytime = (unix, unixOffset, unixSunrise, unixSunset) => {
+  const hour = dayjs.unix(unix + unixOffset).utc(true).hour()
+  const sunriseHour = dayjs.unix(unixSunrise + unixOffset).utc(true).hour()
+  const sunsetHour = dayjs.unix(unixSunset + unixOffset).utc(true).hour()
+
+  return hour >= sunriseHour && hour <= sunsetHour
+}
