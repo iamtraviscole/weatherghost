@@ -66,6 +66,30 @@
         }
       }
     }
+
+    &-alert {
+      margin-top: 20px;
+
+      > button {
+        display: flex;
+        align-items: center;
+        color: var(--color-text-b);
+        background-color: var(--color-alert-a);
+        padding: 5px 6px 5px 5px;
+        border-radius: 5px;
+        font-size: 12px;
+
+        > svg {
+          height: 15px;
+          margin-right: 4px;
+          fill: var(--color-text-b);
+        }
+
+        &:hover {
+          background-color: var(--color-alert-a-shade);
+        }
+      }
+    }
   }
 
   &__hourly {

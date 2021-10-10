@@ -1,9 +1,11 @@
-import { useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Error from 'next/error'
 
 import Layout from '../../components/Layout'
+import Alerts from '../../components/Alerts'
 
 import PrecipitationIcon from '../../public/icons/precipitation.svg'
+import AlertIcon from '../../public/icons/alert.svg'
 import ClearDayIcon from '../../public/icons/weather-icons/clearday.svg'
 import ClearNightIcon from '../../public/icons/weather-icons/clearnight.svg'
 import CloudyIcon from '../../public/icons/weather-icons/cloudy.svg'
@@ -21,11 +23,6 @@ import { buildLocationName, addLocationToLocalStorage } from '../../utils/locati
 import { UnitsContext } from '../../contexts/UnitsContext'
 
 export default function Weather({ error, location, weather }) {
-
-  console.log(weather)
-
-  const { units } = useContext(UnitsContext)
-  
   if (error) <Error statusCode={error} />
 
   if (!location) {
@@ -35,6 +32,12 @@ export default function Weather({ error, location, weather }) {
       </Layout>
     )
   }
+
+  console.log(weather)
+
+  const [showAlertsModal, setShowAlertsModal] = useState(false)
+
+  const { units } = useContext(UnitsContext)
 
   const locationName = buildLocationName(location)
 
@@ -85,8 +88,18 @@ export default function Weather({ error, location, weather }) {
     }
   })
 
+  const onAlertClick = () => {
+    setShowAlertsModal(!showAlertsModal)
+  }
+
   return (
     <Layout>
+      {showAlertsModal && 
+      <Alerts 
+        alerts={weather.alerts} 
+        closeModal={onAlertClick} 
+        timezoneOffset={weather.timezone_offset} 
+      />}
       <div className='Weather'>
         <div className='Weather__current'>
           <div className='Weather__current-ghost'>
@@ -113,6 +126,12 @@ export default function Weather({ error, location, weather }) {
                 L: <span>{fOrC(weather.daily[0].temp.min, units)}&#176;</span>
               </p>
             </div>
+            {weather.alerts && 
+            <div className='Weather__current-alert'>
+              <button onClick={onAlertClick}>
+                <AlertIcon />{weather.alerts.length > 1 ? 'Alerts' : 'Alert'}
+              </button>
+            </div>}
           </div>
         </div>
         <div className='Weather__hourly'>
