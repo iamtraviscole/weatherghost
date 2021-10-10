@@ -1,7 +1,10 @@
-<!-- feathericons -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
-  <line x1="16" y1="13" x2="16" y2="21"></line>
-  <line x1="8" y1="13" x2="8" y2="21"></line>
-  <line x1="12" y1="15" x2="12" y2="23"></line>
-  <path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 34.46">
+	<style type="text/css">
+		.st0{fill:none;stroke:#7da2ea;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	</style>
+	<line class="st0" x1="11.56" y1="19.88" x2="11.56" y2="30.07"/>
+	<line class="st0" x1="19" y1="22.77" x2="19" y2="32.96"/>
+	<line class="st0" x1="26.44" y1="19.88" x2="26.44" y2="30.07"/>
+	<path class="st0" d="M33.52,23.08c1.82-1.51,2.98-3.78,2.98-6.33c0-4.29-3.28-7.81-7.47-8.19C27.55,4.45,23.62,1.5,19,1.5
+		S10.45,4.45,8.97,8.57c-4.19,0.38-7.47,3.9-7.47,8.19c0,2.55,1.16,4.82,2.98,6.33"/>
 </svg>
