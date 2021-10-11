@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import Error from 'next/error'
 
 import Layout from '../../components/Layout'
-import Alerts from '../../components/Alerts'
+import WeatherAlerts from '../../components/WeatherAlerts'
 
 import PrecipitationIcon from '../../public/icons/precipitation.svg'
 import AlertIcon from '../../public/icons/alert.svg'
@@ -95,7 +95,7 @@ export default function Weather({ error, location, weather }) {
   return (
     <Layout>
       {showAlertsModal && 
-      <Alerts 
+      <WeatherAlerts 
         alerts={weather.alerts} 
         closeModal={onAlertClick} 
         timezoneOffset={weather.timezone_offset} 
