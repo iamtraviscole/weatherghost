@@ -106,7 +106,8 @@ export default function Weather({ error, location, weather }) {
             weather illustration here
           </div>
           <div className='Weather__current-weather'>
-            <h1>{locationName}</h1>
+            <h1>{`${locationName}, 
+            ${location.address.country_code && location.address.country_code.toUpperCase()}`}</h1>
             <p className='Weather__current-weather-time'>
               {locationDate(weather.current.dt, weather.timezone_offset, 'dddd, h:mm A')}
             </p>
