@@ -14,6 +14,7 @@ import '../styles/components/Footer.scss'
 import '../styles/components/Home.scss'
 import '../styles/components/Weather.scss'
 import '../styles/components/WeatherAlerts.scss'
+import '../styles/components/WeatherHourly.scss'
 
 import UnitsContext from '../contexts/UnitsContext'  
 
