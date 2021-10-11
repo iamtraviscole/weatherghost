@@ -42,25 +42,36 @@ export const weatherDescription = (weatherCode) => {
   }
 }
 
-export const weatherIcon = (weatherCode, unix, unixOffset, sunriseUnix, sunsetUnix) => {
+export const weatherIconName = (argsObj) => {
+
+  // argsObj: {
+    // weatherCode: openweathermap weather code,
+    // date: unix timestamp in seconds,
+    // timezoneOffset: unix timestamp in seconds,
+    // sunrise: unix timestamp in seconds,
+    // sunset: unix timestamp in seconds
+  // }
+
+  const { weatherCode, date, timezoneOffset, sunrise, sunset } = argsObj
+
   const code = weatherCode.toString()
-  const daytime = isDaytime(unix, unixOffset, sunriseUnix, sunsetUnix)
+  const daytime = isDaytime(date, timezoneOffset, sunrise, sunset)
 
   switch (code[0]) {
-    case '2': return 'thunderstorms'
-    case '3': return 'rain'
-    case '5': return 'rain'
-    case '6': return 'snow'
+    case '2': return 'ThunderstormsIcon'
+    case '3': return 'RainIcon'
+    case '5': return 'RainIcon'
+    case '6': return 'SnowIcon'
     case '7': 
-      if (code === '781') return 'thunderstorms'
+      if (code === '781') return 'ThunderstormsIcon'
       return 'fog'
     case '8':
       switch (code) {
-        case '800': return daytime ? 'clearDay' : 'clearNight'
-        case '801': return daytime ? 'clearDay' : 'clearNight'
-        case '802': return daytime ? 'partlyCloudyDay' : 'partlyCloudyNight'
-        case '803': return 'cloudy'
-        case '804': return 'cloudy'
+        case '800': return daytime ? 'ClearDayIcon' : 'ClearNightIcon'
+        case '801': return daytime ? 'ClearDayIcon' : 'ClearNightIcon'
+        case '802': return daytime ? 'PartlyCloudyDayIcon' : 'PartlyCloudyNightIcon'
+        case '803': return 'CloudyIcon'
+        case '804': return 'CloudyIcon'
       }
   }
 }

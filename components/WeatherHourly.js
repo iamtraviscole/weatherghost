@@ -11,7 +11,7 @@ import SnowIcon from '../public/icons/weather-icons/snow.svg'
 import ThunderstormsIcon from '../public/icons/weather-icons/thunderstorms.svg'
 import FogIcon from '../public/icons/weather-icons/fog.svg'
 
-import { fOrC, weatherDescription, weatherIcon } from '../utils/weather'
+import { fOrC, weatherDescription, weatherIconName } from '../utils/weather'
 import { locationDate, dayIsToday } from '../utils/dates'
 
 import { UnitsContext } from '../contexts/UnitsContext'
@@ -31,18 +31,26 @@ export default function WeatherHourly({ weather }) {
       )
 
       const weatherIcons = {
-        clearDay: ClearDayIcon,
-        clearNight: ClearNightIcon,
-        cloudy: CloudyIcon,
-        partlyCloudyDay: PartlyCloudyDayIcon,
-        partlyCloudyNight: PartlyCloudyNightIcon,
-        rain: RainIcon,
-        snow: SnowIcon,
-        thunderstorms: ThunderstormsIcon,
-        fog: FogIcon
+        ClearDayIcon,
+        ClearNightIcon,
+        CloudyIcon,
+        PartlyCloudyDayIcon,
+        PartlyCloudyNightIcon,
+        RainIcon,
+        SnowIcon,
+        ThunderstormsIcon,
+        FogIcon
       }
 
-      const WeatherIcon = weatherIcons[weatherIcon(hour.weather[0].id, hour.dt, weather.timezone_offset, weather.current.sunrise, weather.current.sunset)]
+      const iconName = weatherIconName({
+        weatherCode: hour.weather[0].id, 
+        date: hour.dt, 
+        timezoneOffset: weather.timezone_offset, 
+        sunrise: weather.current.sunrise, 
+        sunset: weather.current.sunset
+      })
+
+      const WeatherIcon = weatherIcons[iconName]
       
       return (
         <div key={i} className='WeatherHourly__hour'>
