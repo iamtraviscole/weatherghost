@@ -12,7 +12,7 @@ import ThunderstormsIcon from '../public/icons/weather-icons/thunderstorms.svg'
 import FogIcon from '../public/icons/weather-icons/fog.svg'
 
 import { fOrC, weatherDescription, weatherIconName } from '../utils/weather'
-import { locationDate, dayIsToday } from '../utils/dates'
+import { locationDate, dayOfMonthIsToday } from '../utils/dates'
 
 import { UnitsContext } from '../contexts/UnitsContext'
 
@@ -22,7 +22,7 @@ export default function WeatherHourly({ weather }) {
   const hours = weather.hourly.map((hour, i) => {
     while (i < 25) {
       const time = (
-        dayIsToday(hour.dt, weather.current.dt, weather.timezone_offset)
+        dayOfMonthIsToday(hour.dt, weather.current.dt, weather.timezone_offset)
         ? <p>{locationDate(hour.dt, weather.timezone_offset, 'h A')}</p>
         : <>
             <p>{locationDate(hour.dt, weather.timezone_offset, 'ddd')}</p>

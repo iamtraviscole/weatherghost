@@ -12,7 +12,7 @@ import ThunderstormsIcon from '../public/icons/weather-icons/thunderstorms.svg'
 import FogIcon from '../public/icons/weather-icons/fog.svg'
 
 import { fOrC, weatherDescription, weatherIconName } from '../utils/weather'
-import { locationDate, dayIsToday } from '../utils/dates'
+import { locationDate, dayOfMonthIsToday } from '../utils/dates'
 
 import { UnitsContext } from '../contexts/UnitsContext'
 
@@ -21,7 +21,7 @@ export default function WeatherDaily({ weather }) {
 
   const days = weather.daily.map((day, i) => {
     const time = (
-      dayIsToday(day.dt, weather.current.dt, weather.timezone_offset)
+      dayOfMonthIsToday(day.dt, weather.current.dt, weather.timezone_offset)
       ? <p>Today</p>
       : <>
         <p>{locationDate(day.dt, weather.timezone_offset, 'ddd')}</p>
