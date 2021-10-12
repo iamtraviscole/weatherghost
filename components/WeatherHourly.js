@@ -72,7 +72,6 @@ export default function WeatherHourly({ weather }) {
 
   return (
     <div className='WeatherHourly'>
-      <h2>Hourly</h2>
       {hours}
     </div>
   )

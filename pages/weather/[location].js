@@ -4,6 +4,7 @@ import Error from 'next/error'
 import Layout from '../../components/Layout'
 import WeatherAlerts from '../../components/WeatherAlerts'
 import WeatherHourly from '../../components/WeatherHourly'
+import WeatherDaily from '../../components/WeatherDaily'
 
 import AlertIcon from '../../public/icons/alert.svg'
 
@@ -15,6 +16,7 @@ import { UnitsContext } from '../../contexts/UnitsContext'
 
 export default function Weather({ error, location, weather }) {
   const [showAlertsModal, setShowAlertsModal] = useState(false)
+  const [showHourly, setShowHourly] = useState(true)
 
   const { units } = useContext(UnitsContext)
 
@@ -86,7 +88,21 @@ export default function Weather({ error, location, weather }) {
           </div>
         </div>
         <div className='Weather__future'>
-          <WeatherHourly weather={weather} />
+          <div className='Weather__future-btns-ctr'>
+            <button 
+              className={`Weather__future-btn ${showHourly && 'Weather__future-btn--active'}`}
+              onClick={() => setShowHourly(true)}
+            >
+                Hourly
+            </button>
+            <button 
+              className={`Weather__future-btn ${!showHourly && 'Weather__future-btn--active'}`}
+              onClick={() => setShowHourly(false)}
+            >
+                Daily
+            </button>
+          </div>
+          {showHourly ? <WeatherHourly weather={weather} /> : <WeatherDaily weather={weather} />}
         </div>
       </div>
     </Layout>
