@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 import LocationIcon from '../public/icons/location.svg'
 import CloseIcon from '../public/icons/close.svg'
@@ -6,16 +7,14 @@ import CloseIcon from '../public/icons/close.svg'
 export default function NavSearch() {
   const [location, setLocation] = useState('')
 
+  const router = useRouter()
+
   const onChangeLocation = (e) => setLocation(e.target.value)
   
   const onSubmitSearch = (e) => {
     e.preventDefault()
-
-    const recentLocations = JSON.parse(localStorage.getItem('recentLocations')) || []
-    const newRecentLocations = recentLocations.length < 3 
-      ? [...recentLocations, location]
-      : [...recentLocations.slice(1), location]
-    localStorage.setItem('recentLocations', JSON.stringify(newRecentLocations))
+    router.push(`/weather/${location}`)
+    setLocation('')
   }
 
   const onClearSearch = (e) => setLocation('')
@@ -39,7 +38,7 @@ export default function NavSearch() {
           id='NavSearch__form-location'
           name='NavSearch__form-location'
           value={location}
-          placeholder={'Enter location'}
+          placeholder='Enter Location'
           onChange={onChangeLocation}
         />
       </div>

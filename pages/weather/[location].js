@@ -24,7 +24,7 @@ export default function Weather({ error, location, weather }) {
 
   useEffect(() => {
     addLocationToLocalStorage(location, locationName)
-  }, [])
+  }, [location])
 
   if (error) <Error statusCode={error} />
 
