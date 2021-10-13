@@ -20,6 +20,8 @@ export default function Weather({ error, location, weather }) {
 
   const { units } = useContext(UnitsContext)
 
+  const locationName = buildLocationName(location)
+
   useEffect(() => {
     addLocationToLocalStorage(location, locationName)
   }, [])
@@ -35,8 +37,6 @@ export default function Weather({ error, location, weather }) {
   }
 
   console.log(weather)
-
-  const locationName = buildLocationName(location)
 
   const onAlertClick = () => {
     setShowAlertsModal(!showAlertsModal)
@@ -71,9 +71,9 @@ export default function Weather({ error, location, weather }) {
                 {weatherDescription(weather.current.weather[0].id)}
               </p>
               <div className='Weather__current-weather-details'>
-                <p>Feels <span>{fOrC(weather.current.feels_like, units)}&#176;</span></p>
-                <p>High <span>{fOrC(weather.daily[0].temp.max, units)}&#176;</span></p>
-                <p>Low <span>{fOrC(weather.daily[0].temp.min, units)}&#176;</span></p>
+                <p>Feels<span>{fOrC(weather.current.feels_like, units)}&#176;</span></p>
+                <p>High<span>{fOrC(weather.daily[0].temp.max, units)}&#176;</span></p>
+                <p>Low<span>{fOrC(weather.daily[0].temp.min, units)}&#176;</span></p>
               </div>
             </div>
             {weather.alerts && 
