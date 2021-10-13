@@ -66,18 +66,15 @@ export default function Weather({ error, location, weather }) {
             <div className='Weather__current-weather-temp-ctr'>
               <p className='Weather__current-weather-temp'>
                 {fOrC(weather.current.temp, units)}&#176; 
-                <span>{units === 'imperial' ? 'F' : 'C'}</span>
               </p>
               <p className='Weather__current-weather-description'>
                 {weatherDescription(weather.current.weather[0].id)}
               </p>
-              <p className='Weather__current-weather-feels'>
-                Feels like: <span>{fOrC(weather.current.feels_like, units)}&#176;</span>
-              </p>
-              <p className='Weather__current-weather-high-low'>
-                H: <span>{fOrC(weather.daily[0].temp.max, units)}&#176; </span> 
-                L: <span>{fOrC(weather.daily[0].temp.min, units)}&#176;</span>
-              </p>
+              <div className='Weather__current-weather-details'>
+                <p>Feels <span>{fOrC(weather.current.feels_like, units)}&#176;</span></p>
+                <p>High <span>{fOrC(weather.daily[0].temp.max, units)}&#176;</span></p>
+                <p>Low <span>{fOrC(weather.daily[0].temp.min, units)}&#176;</span></p>
+              </div>
             </div>
             {weather.alerts && 
             <div className='Weather__current-alert'>
