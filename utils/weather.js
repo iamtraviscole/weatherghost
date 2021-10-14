@@ -64,7 +64,7 @@ export const weatherIconName = (argsObj) => {
     case '6': return 'SnowIcon'
     case '7': 
       if (code === '781') return 'ThunderstormsIcon'
-      return 'fog'
+      return 'FogIcon'
     case '8':
       switch (code) {
         case '800': return daytime ? 'ClearDayIcon' : 'ClearNightIcon'
