@@ -1,9 +1,9 @@
 export const buildLocationName = (location) => {
-  const { city, town, village, municipality, county, state, country } = location.address
+  const { city, town, village, municipality, county, state, country, locality } = location.address
 
   let locationNames = []
   const name1 = city || town || village || municipality || county
-  const name2 = state || country
+  const name2 = state || country || locality
   name1 && locationNames.push(name1)
   name2 && locationNames.push(name2)
 
