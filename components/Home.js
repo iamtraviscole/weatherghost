@@ -21,7 +21,7 @@ export default function Home() {
   
   const onSubmitSearch = (e) => {
     e.preventDefault()
-    router.push(`/weather/${location}`)
+    location.trim() && router.push(`/weather/${location.trim()}`)
   }
 
   const onClearSearch = () => setLocation('')

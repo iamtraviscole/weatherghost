@@ -13,7 +13,7 @@ export default function NavSearch() {
   
   const onSubmitSearch = (e) => {
     e.preventDefault()
-    router.push(`/weather/${location}`)
+    location.trim() && router.push(`/weather/${location.trim()}`)
     setLocation('')
   }
 
