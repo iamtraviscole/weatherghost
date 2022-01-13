@@ -5,10 +5,11 @@ import Layout from '../../components/Layout'
 import WeatherAlerts from '../../components/WeatherAlerts'
 import WeatherHourly from '../../components/WeatherHourly'
 import WeatherDaily from '../../components/WeatherDaily'
+import WeatherGhost from '../../components/WeatherGhost'
 
 import AlertIcon from '../../public/icons/alert.svg'
 
-import { fOrC, weatherDescription } from '../../utils/weather'
+import { fOrC, weatherDescription, ghostHelper } from '../../utils/weather'
 import { locationDate } from '../../utils/dates'
 import { buildLocationName, addLocationToLocalStorage } from '../../utils/location'
 
@@ -42,6 +43,14 @@ export default function Weather({ error, location, weather }) {
     setShowAlertsModal(!showAlertsModal)
   }
 
+  const ghostInfo = ghostHelper({
+    weatherCode: weather.current.weather[0].id, 
+    date: weather.current.dt, 
+    timezoneOffset: weather.timezone_offset, 
+    sunrise: weather.current.sunrise, 
+    sunset: weather.current.sunset
+  })
+
   return (
     <Layout>
       {showAlertsModal && 
@@ -51,9 +60,9 @@ export default function Weather({ error, location, weather }) {
         timezoneOffset={weather.timezone_offset} 
       />}
       <div className='Weather'>
-        <div className='Weather__current'>
+        <div className='Weather__current' style={{backgroundColor: ghostInfo.bgColor}}>
           <div className='Weather__current-ghost'>
-            weather illustration here
+            <WeatherGhost weather={weather} filename={ghostInfo.filename} />
           </div>
           <div className='Weather__current-weather'>
             <h1>

@@ -16,6 +16,7 @@ import '../styles/components/Weather.scss'
 import '../styles/components/WeatherAlerts.scss'
 import '../styles/components/WeatherHourly.scss'
 import '../styles/components/WeatherDaily.scss'
+import '../styles/components/WeatherGhost.scss'
 
 import UnitsContext from '../contexts/UnitsContext'  
 
