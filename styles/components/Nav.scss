@@ -6,19 +6,6 @@
   padding: 0 25px;
   height: 80px;
 
-  &__logo {
-    line-height: 0;
-
-    svg {
-      fill: var(--color-a);
-      height: 28px;
-
-      &:hover {
-        animation: logo-colors 2s infinite;
-      }
-    }
-  }
-
   &__right {
     display: flex;
   }
@@ -26,34 +13,5 @@
   &__units {
     margin-left: 25px;
     align-self: center;
-
-    &-unit {
-      color: var(--color-a);
-      border: 2px solid var(--color-a);
-      border-radius: 5px;
-      height: 24px;
-      width: 24px;
-      font-size: 12px;
-
-      &:first-of-type {
-        margin-right: 5px;
-      }
-
-      &--active {
-        color: var(--color-text-b);
-        background: var(--color-a);
-      }
-    }
   }
-}
-
-@keyframes logo-colors {
-  0% {fill: #ffadad;}
-  14.3% {fill: #FFD6A5;}
-  28.6% {fill: #b1fca2;}
-  42.9% {fill: #9BF6FF;}
-  57.1% {fill: #A0C4FF;}
-  71.4% {fill: #BDB2FF;}
-  85.7% {fill: #FFC6FF;}
-  100% {fill: #ffadad;}
 }

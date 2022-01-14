@@ -1,0 +1,26 @@
+.Logo {
+
+  &__logo {
+    line-height: 0;
+
+    svg {
+      fill: var(--color-a);
+      height: 28px;
+
+      &:hover {
+        animation: logo-colors 2s infinite;
+      }
+    }
+  }
+}
+
+@keyframes logo-colors {
+  0% {fill: #ffadad;}
+  14.3% {fill: #FFD6A5;}
+  28.6% {fill: #b1fca2;}
+  42.9% {fill: #9BF6FF;}
+  57.1% {fill: #A0C4FF;}
+  71.4% {fill: #BDB2FF;}
+  85.7% {fill: #FFC6FF;}
+  100% {fill: #ffadad;}
+}

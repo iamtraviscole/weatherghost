@@ -1,9 +1,13 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
+import HomeNav from './HomeNav'
 import Nav from './Nav'
 import Footer from './Footer'
 
 export default function Layout(props) {
+  const { pathname } = useRouter()
+
   return (
     <> 
     <Head>
@@ -13,7 +17,7 @@ export default function Layout(props) {
     </Head>
     <div className='Layout'>
       <header className='Layout__header'>
-        <Nav />
+        {pathname === '/' ? <HomeNav /> : <Nav />}
       </header>
       <main className='Layout__main'>
         {props.children}
