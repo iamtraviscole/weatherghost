@@ -21,6 +21,10 @@ export default function Weather({ error, location, weather }) {
 
   const { units } = useContext(UnitsContext)
 
+  useEffect(() => {
+    location && addLocationToLocalStorage(location, locationName)
+  }, [location])
+
   const locationName = location && buildLocationName(location)
 
   if (!locationName) {
@@ -31,10 +35,6 @@ export default function Weather({ error, location, weather }) {
       </Layout>
     )
   }
-
-  useEffect(() => {
-    addLocationToLocalStorage(location, locationName)
-  }, [location])
 
   if (error) <Error statusCode={error} />
 
