@@ -55,3 +55,41 @@
     }
   }
 }
+
+@media (max-width: 760px) {
+
+  .WeatherHourly {
+
+    &__hour {
+      
+      &-description {
+        display: none;
+      }
+    }
+  }
+
+}
+
+@media (max-width: 530px) {
+
+  .WeatherHourly {
+
+    &__hour {
+      
+      &-description {
+        display: none;
+      }
+
+      &-icon {
+        position: absolute;
+        left: auto;
+        right: 25px;
+      }
+
+      &-rain {
+        display: none;
+      }
+    }
+  }
+
+}

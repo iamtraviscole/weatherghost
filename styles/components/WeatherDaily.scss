@@ -76,3 +76,41 @@
     }
   }
 }
+
+@media (max-width: 760px) {
+
+  .WeatherDaily {
+
+    &__day {
+      
+      &-description {
+        display: none;
+      }
+    }
+  }
+
+}
+
+@media (max-width: 530px) {
+
+  .WeatherDaily {
+
+    &__day {
+      
+      &-description {
+        display: none;
+      }
+
+      &-icon {
+        position: absolute;
+        left: auto;
+        right: 25px;
+      }
+
+      &-rain {
+        display: none;
+      }
+    }
+  }
+
+}

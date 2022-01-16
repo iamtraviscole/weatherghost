@@ -14,10 +14,12 @@
 
   &__search {
     padding: 30px;
+    width: 450px;
     background-color: var(--color-a);
     border-radius: 10px;
     position: relative;
     box-shadow: 0 10px 0 var(--color-a-shade);
+    margin: 50px 25px 60px 25px;
 
     &-ghost {
       position: absolute;
@@ -52,7 +54,7 @@
       }
 
       &-location {
-        width: 400px;
+        width: 100%;
         height: 40px;
         padding: 0 34px 0 42px;
         font-size: 16px;
@@ -117,7 +119,7 @@
   }
 
   &__recent {
-    width: 350px;
+    width: 100%;
     margin: 15px auto 0 auto;
     
     &-locations {
@@ -171,4 +173,15 @@
   71.4% {content: 'Toronto, Ontario';}
   85.7% {content: 'Oslo, Norway';}
   100% {content: 'New York, NY';}
+}
+
+@media (max-width: 550px) {
+  .Home {
+
+    &__search {
+      width: calc(100% - 50px);
+      min-width: 350px;
+    }
+  }
+
 }
