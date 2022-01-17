@@ -8,6 +8,7 @@ import WeatherDaily from '../../components/WeatherDaily'
 import WeatherGhost from '../../components/WeatherGhost'
 
 import AlertIcon from '../../public/icons/alert.svg'
+import HelpIcon from '../../public/icons/help.svg'
 
 import { fOrC, weatherDescription, ghostHelper } from '../../utils/weather'
 import { locationDate } from '../../utils/dates'
@@ -29,9 +30,17 @@ export default function Weather({ error, location, weather }) {
 
   if (!locationName) {
     return (
-      // TODO: style
       <Layout>
-        <p>Location not found, please be more specific</p>
+        <div className='Weather'>
+          <div className='Weather__not-found-outer-ctr'>
+            <div className='Weather__not-found'>
+            <HelpIcon /> 
+              <p>Location not found, please double check spelling or be more specific</p>
+              <br />
+              <p>Search using any combination of street, city, county, state, country, postal code, landmark, or monument</p>
+            </div>
+          </div>
+        </div>
       </Layout>
     )
   }

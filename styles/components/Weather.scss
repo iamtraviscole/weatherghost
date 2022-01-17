@@ -1,5 +1,29 @@
 .Weather {
 
+  &__not-found-outer-ctr {
+    margin: 25px;
+  }
+
+  &__not-found {
+    display: inline-block;
+    padding: 25px;
+    max-width: 500px;
+    border-radius: 5px;
+    color: var(--color-text-b);
+    background-color: var(--color-a);
+    
+    > svg {
+      height: 30px;
+      fill: var(--color-text-b);
+      margin-bottom: 15px;
+    }
+
+    > p {
+      font-size: 15px;
+      width: 100%;
+    }
+  }
+
   &__current {
     display: flex;
     min-height: 300px;
@@ -134,6 +158,10 @@
 
 @media (max-width: 715px) {
   .Weather {
+
+    &__not-found-outer-ctr {
+      text-align: center;
+    }
 
     &__current {
       flex-direction: column-reverse;
