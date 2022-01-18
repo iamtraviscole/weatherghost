@@ -1,14 +1,14 @@
 import React from 'react'
+import Link from 'next/link'
 
 export default function Footer() {
   return (
     <div className='Footer'>
-      <ul>
-        <li>Lorem</li>
-        <li>Ipsum</li>
-        <li>Dolor</li>
-        <li>Sit</li>
-      </ul>
+      <div className='Footer__outer-ctr'>
+        <span className='Footer__by'>
+          Made by <Link href='http://trvscl.com'><a>Travis Cole</a></Link>
+        </span>
+      </div>
     </div>
   )
 }

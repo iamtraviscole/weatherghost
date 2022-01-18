@@ -1,17 +1,17 @@
 .Footer {
-  display: flex;
-  justify-content: center;
+  background-color: var(--color-bg-a);
 
-  > ul {
-    font-size: 14px;
+  &__outer-ctr {
+    display: flex;
+    justify-content: left;
+    padding: 10px 25px;
+  }
 
-    > li {
-      display: inline;
-      padding-right: 40px;
+  &__by {
+    font-size: 12px;
 
-      &:last-child {
-        padding-right: 0;
-      }
+    > a {
+      text-decoration: underline;
     }
   }
 }
