@@ -1,14 +1,16 @@
 .Footer {
   background-color: var(--color-bg-a);
+  max-width: 1920px;
+  margin: 0 auto;
 
   &__outer-ctr {
     display: flex;
-    justify-content: left;
-    padding: 10px 25px;
+    justify-content: center;
+    padding: 8px 25px;
   }
 
   &__by {
-    font-size: 12px;
+    font-size: 11px;
 
     > a {
       text-decoration: underline;
