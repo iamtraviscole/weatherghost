@@ -6,7 +6,7 @@ export default function Footer() {
     <div className='Footer'>
       <div className='Footer__outer-ctr'>
         <span className='Footer__by'>
-          Made by <Link href='http://trvscl.com'><a>Travis Cole</a></Link>
+          &copy; {new Date().getFullYear()} | Made by <Link href='http://trvscl.com'><a>Travis Cole</a></Link>
         </span>
       </div>
     </div>
