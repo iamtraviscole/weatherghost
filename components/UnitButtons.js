@@ -5,9 +5,7 @@ import { UnitsContext } from '../contexts/UnitsContext'
 export default function UnitButtons() {
   const { units, setUnits } = useContext(UnitsContext)
 
-  const onUnitClick = (e) => {
-    setUnits(e.target.value)
-  }
+  const onUnitClick = (e) => setUnits(e.target.value)
 
   const unitClass = (buttonUnits) => {
     return units === buttonUnits
