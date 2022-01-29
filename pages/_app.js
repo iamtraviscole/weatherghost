@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 import NProgress from 'nprogress'
 
 import '../styles/global/reset.scss'
@@ -44,9 +45,14 @@ function MyApp({ Component, pageProps }) {
   }, [router])
 
   return (
-    <UnitsContext>
-      <Component {...pageProps} />
-    </UnitsContext>
+    <>
+      <Head>
+        <meta name='viewport' content='width=device-width initial-scale=1' />
+      </Head>
+      <UnitsContext>
+        <Component {...pageProps} />
+      </UnitsContext>
+    </>
   )
     
 }

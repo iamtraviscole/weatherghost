@@ -47,3 +47,15 @@
     }
   }
 }
+
+@media (max-width: 450px) {
+  .NavSearch {
+    
+    &__form {
+
+      &-location {
+        width: auto;
+      }
+    }
+  }
+}
