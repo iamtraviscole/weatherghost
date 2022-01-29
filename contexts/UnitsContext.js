@@ -6,12 +6,9 @@ export default function UnitsContextProvider(props) {
   const [units, setUnits] = useState('imperial')
 
   useEffect(() => {
-    const units = localStorage.getItem('units')
-    units && setUnits(units)
-  }, [])
-
-  useEffect(() => {
     localStorage.setItem('units', units)
+    const localUnits = localStorage.getItem('units')
+    localUnits && setUnits(localUnits)
   }, [units])
 
   return (
