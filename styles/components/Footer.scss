@@ -11,9 +11,11 @@
 
   &__by {
     font-size: 11px;
-
+    color: var(--color-text-a-tint);
+    
     > a {
       text-decoration: underline;
+      color: var(--color-text-a-tint);
     }
   }
 }
