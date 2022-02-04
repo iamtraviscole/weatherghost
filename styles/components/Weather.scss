@@ -42,6 +42,7 @@
       > h1 {
         font-size: 28px;
         color: var(--color-text-b);
+        margin-bottom: 5px;
       }
 
       &-time {
@@ -60,6 +61,7 @@
         font-size: 46px;
         line-height: 1;
         font-weight: 700;
+        margin-bottom: 5px;
 
         > span {
           position: relative;
@@ -73,7 +75,7 @@
       &-description {
         font-size: 28px;
         font-weight: 700;
-        padding-bottom: 15px;
+        margin-bottom: 15px;
       }
 
       &-details {
@@ -176,6 +178,14 @@
         text-align: center;
         width: 100%;
         padding-bottom: 0;
+
+        > h1 {
+          font-size: min(8vw, 28px);
+        }
+
+        &-description {
+          font-size: min(6vw, 28px);
+        }
       }
 
       &-alert {
