@@ -47,8 +47,6 @@ export default function Weather({ error, location, weather }) {
 
   if (error) <Error statusCode={error} />
 
-  console.log(weather)
-
   const onAlertClick = () => {
     setShowAlertsModal(!showAlertsModal)
   }
