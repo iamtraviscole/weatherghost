@@ -14,7 +14,8 @@
 
   &__search {
     padding: 30px;
-    max-width: min(450px, calc(100vw - 50px));
+    width: 400px;
+    max-width: calc(100vw - 50px);
     background-color: var(--color-a);
     border-radius: 10px;
     position: relative;
