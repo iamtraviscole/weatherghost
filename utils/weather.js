@@ -93,8 +93,8 @@ export const ghostHelper = (argsObj) => {
 
   switch (code[0]) {
     case '2': return daytime
-      ? {filename: 'thunderstorm-day-ghost.svg', bgColor: '#4e697c'}
-      : {filename: 'thunderstorm-night-ghost.svg', bgColor: '#28353f' }
+      ? {filename: 'thunderstorms-day-ghost.svg', bgColor: '#4e697c'}
+      : {filename: 'thunderstorms-night-ghost.svg', bgColor: '#28353f' }
     case '3': return daytime
       ? {filename: 'rain-day-ghost.svg', bgColor: '#4c5659'}
       : {filename: 'rain-night-ghost.svg', bgColor: '#2d3233'}
@@ -106,8 +106,8 @@ export const ghostHelper = (argsObj) => {
       : {filename: 'snow-night-ghost.svg', bgColor: '#383838'}
     case '7': 
       if (code === '781') return daytime
-        ? {filename: 'thunderstorm-day-ghost.svg', bgColor: '#4e697c'}
-        : {filename: 'thunderstorm-night-ghost.svg', bgColor: '#28353f'}
+        ? {filename: 'thunderstorms-day-ghost.svg', bgColor: '#4e697c'}
+        : {filename: 'thunderstorms-night-ghost.svg', bgColor: '#28353f'}
       return daytime
         ? {filename: 'fog-day-ghost.svg', bgColor: '#6e7577'}
         : {filename: 'fog-night-ghost.svg', bgColor: '#34393a'}
