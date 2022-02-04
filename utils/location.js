@@ -15,15 +15,15 @@ export const addLocationToLocalStorage = (location, locationName) => {
 
   if (!localRecentLocations.includes(locationName)) {
     const newRecentLocations = localRecentLocations.length < 3 
-      ? [...localRecentLocations, locationName]
-      : [...localRecentLocations.slice(1), locationName]
+      ? [locationName, ...localRecentLocations]
+      : [locationName, ...localRecentLocations.slice(1)]
     localStorage.setItem('recentLocations', JSON.stringify(newRecentLocations))
   } else {
-    // if location already exists then move to end of arr
+    // if location already exists then move to front of arr
     const locationIndex = localRecentLocations.indexOf(locationName)
-    if (locationIndex < 2) {
+    if (locationIndex > 0) {
       localRecentLocations.splice(locationIndex, 1)
-      const newRecentLocations = [...localRecentLocations, locationName]
+      const newRecentLocations = [locationName, ...localRecentLocations]
       localStorage.setItem('recentLocations', JSON.stringify(newRecentLocations))
     }
   }
