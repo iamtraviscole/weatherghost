@@ -59,3 +59,19 @@
     }
   }
 }
+
+
+@media (max-width: 735px) {
+  .NavSearch {
+    
+    &__form {
+
+      &-location {
+
+        &::placeholder {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
