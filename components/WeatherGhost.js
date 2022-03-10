@@ -1,9 +1,6 @@
 import React from 'react'
 
-import { ghostHelper } from '../utils/weather'
-
-export default function WeatherGhost({ weather, filename }) {
-
+export default function WeatherGhost({ filename }) {
   return (
     <div className='WeatherGhost'>
       <img src={`/ghosts/${filename}`} alt='' />
