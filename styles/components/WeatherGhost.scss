@@ -1,6 +1,17 @@
 .WeatherGhost {
 
   > img {
-    max-height: 390px;
+    height: 390px;
   }
+
+}
+
+@media (max-width: 400px) {
+  .WeatherGhost {
+    
+    > img {
+      height: 350px;
+    }
+  }
+
 }
